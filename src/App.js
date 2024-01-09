@@ -16,11 +16,14 @@ function Counter() {
   date.setDate(date.getDate() + count);
 
   return (
-    <div>
-      <div>
-        <button onClick={() => setStep((c) => c - 1)}>-</button>
-        <span>Step: {step}</span>
-        <button onClick={() => setStep((c) => c + 1)}>+</button>
+    <div className="column">
+      <div className="column-deep">
+        <input type="range" min="0" max="10" />
+        <div>
+          <button onClick={() => setStep((c) => c - 1)}>-</button>
+          <span>Step: {step}</span>
+          <button onClick={() => setStep((c) => c + 1)}>+</button>
+        </div>
       </div>
 
       <div>
