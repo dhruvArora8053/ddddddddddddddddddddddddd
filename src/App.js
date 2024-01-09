@@ -1,47 +1,44 @@
-import "./styles.css";
+import { useState } from "react";
 
 export default function App() {
   return (
     <div className="App">
-      <FlashCards />
+      <Counter />
     </div>
   );
 }
 
-const questions = [
-  {
-    id: 3457,
-    question: "What language is React based on?",
-    answer: "JavaScript"
-  },
-  {
-    id: 7336,
-    question: "What are the building blocks of React apps?",
-    answer: "Components"
-  },
-  {
-    id: 8832,
-    question: "What's the name of the syntax we use to describe a UI in React?",
-    answer: "JSX"
-  },
-  {
-    id: 1297,
-    question: "How to pass data from parent to child components?",
-    answer: "Props"
-  },
-  {
-    id: 9103,
-    question: "How to give components memory?",
-    answer: "useState hook"
-  },
-  {
-    id: 2002,
-    question:
-      "What do we call an input element that is completely synchronised with state?",
-    answer: "Controlled element"
-  }
-];
+function Counter() {
+  const [count, setCount] = useState(0);
+  const [step, setStep] = useState(1);
 
-function FlashCards() {
-  return <div>TODO</div>;
+  const date = new Date("june 21 2027");
+  date.setDate(date.getDate() + count);
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => setStep((c) => c - 1)}>-</button>
+        <span>Step: {step}</span>
+        <button onClick={() => setStep((c) => c + 1)}>+</button>
+      </div>
+
+      <div>
+        <button onClick={() => setCount((c) => c - step)}>-</button>
+        <span>Count: {count}</span>
+        <button onClick={() => setCount((c) => c + step)}>+</button>
+      </div>
+
+      <p>
+        <span>
+          {count === 0
+            ? "Today is "
+            : count > 0
+            ? `${count} days from today is `
+            : `${Math.abs(count)} days ago was `}
+        </span>
+        <span>{date.toDateString()}</span>
+      </p>
+    </div>
+  );
 }
